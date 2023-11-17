@@ -1,0 +1,23 @@
+.dashboardForm {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.inputField {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.dashboardForm p {
+  width: 100%;
+}
+
+.inputOptions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}

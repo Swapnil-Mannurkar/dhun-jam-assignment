@@ -50,7 +50,7 @@ const LoginForm = () => {
         )}
       </div>
 
-      <div className={styles.actionFields}>
+      <div className={styles.loginActionFields}>
         <button type="submit">SIGN IN</button>
         <p>New Registration?</p>
       </div>
