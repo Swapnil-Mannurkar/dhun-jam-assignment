@@ -8,6 +8,7 @@
 .inputField {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
 
 .dashboardForm p {
@@ -20,4 +21,18 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+
+.inputOptions label {
+  font-size: 16px;
+}
+
+.textInputField {
+  width: 100%;
+  color: #ffffff;
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  padding: 8px;
+  text-align: center;
 }
