@@ -1,0 +1,66 @@
+.loginForm,
+.inputFields,
+.actionFields {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginForm {
+  gap: 3rem;
+  width: 600px;
+}
+
+.inputFields {
+  gap: 1.5rem;
+}
+
+.actionFields {
+  gap: 0.5rem;
+}
+
+.passwordField {
+  position: relative;
+}
+
+.eyeIcon {
+  position: absolute;
+  top: 20%;
+  right: 2%;
+  font-size: 24px;
+}
+
+.eyeIcon:hover {
+  cursor: pointer;
+}
+
+input {
+  width: 600px;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  padding: 12px 10px;
+  border-radius: 12px;
+  color: white;
+}
+
+input::placeholder {
+  color: white;
+}
+
+p {
+  text-align: center;
+}
+
+button {
+  background-color: #6741d9;
+  color: white;
+  border: 2px solid transparent;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 5px;
+  border-radius: 12px;
+}
+
+button:hover {
+  border: 2px solid #f0c3f1;
+  cursor: pointer;
+}
