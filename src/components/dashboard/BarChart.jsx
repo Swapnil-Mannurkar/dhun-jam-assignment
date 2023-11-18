@@ -18,12 +18,21 @@ const BarChart = () => {
   const options = {
     scales: {
       x: {
+        grid: {
+          display: false,
+        },
         ticks: {
           color: "white",
         },
       },
       y: {
-        display: false,
+        display: true,
+        grid: {
+          display: false,
+        },
+        ticks: {
+          color: "#0C0C0C",
+        },
       },
     },
     plugins: {
