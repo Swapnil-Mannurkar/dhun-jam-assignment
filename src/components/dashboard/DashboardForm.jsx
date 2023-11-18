@@ -26,10 +26,10 @@ const DashboardForm = () => {
       <div className={styles.inputField}>
         <p>Regular song request amounts, from high to low-</p>
         <div className={styles.inputOptions}>
-          <input type="button" value="199" className={styles.textInputField} />
-          <input type="button" value="149" className={styles.textInputField} />
-          <input type="button" value="99" className={styles.textInputField} />
-          <input type="button" value="49" className={styles.textInputField} />
+          <input type="button" value="199" className={styles.inputButton} />
+          <input type="button" value="149" className={styles.inputButton} />
+          <input type="button" value="99" className={styles.inputButton} />
+          <input type="button" value="49" className={styles.inputButton} />
         </div>
       </div>
     </form>

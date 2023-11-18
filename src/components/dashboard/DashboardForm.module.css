@@ -27,7 +27,8 @@
   font-size: 16px;
 }
 
-.textInputField {
+.textInputField,
+.inputButton {
   width: 100%;
   color: #ffffff;
   background-color: transparent;
@@ -35,4 +36,8 @@
   border-radius: 12px;
   padding: 8px;
   text-align: center;
+}
+
+.inputButton {
+  cursor: pointer;
 }
