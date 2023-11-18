@@ -26,7 +26,6 @@ const BarChart = () => {
         },
       },
       y: {
-        display: true,
         grid: {
           display: false,
         },
@@ -48,8 +47,18 @@ const BarChart = () => {
   };
 
   return (
-    <div style={{ width: "600px", height: "400px" }}>
+    <div style={{ width: "600px", height: "320px", position: "relative" }}>
       <Bar data={data} options={options} />
+      <p
+        style={{
+          fontFamily: "sans-serif",
+          fontSize: "36px",
+          position: "absolute",
+          top: "0",
+        }}
+      >
+        ₹
+      </p>
     </div>
   );
 };

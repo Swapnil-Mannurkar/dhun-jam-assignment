@@ -9,3 +9,19 @@
   align-items: center;
   gap: 1rem;
 }
+
+.dashboardSaveButton {
+  width: 600px;
+  background-color: #6741d9;
+  color: white;
+  font-size: 16px;
+  border-radius: 12px;
+  padding: 10px;
+  border: 1px solid transparent;
+  font-weight: 600;
+}
+
+.dashboardSaveButton:hover {
+  cursor: pointer;
+  border: 1px solid #f0c3f1;
+}
