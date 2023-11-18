@@ -1,65 +1,46 @@
+import React from "react";
 import { Bar } from "react-chartjs-2";
 // eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import UserData from "./BarChartData";
 
 const BarChart = () => {
-  const userData = {
-    labels: UserData.map((data) => data.xAxis),
+  const data = {
+    labels: ["Custom", "Category1", "Category2", "Category3", "Category4"],
     datasets: [
       {
-        label: "Guest",
-        data: UserData.map((data) => data.yAxis2),
-        tension: 0.5,
-        borderColor: "#E9A0A0",
-        pointBackgroundColor: "#E9A0A0",
-      },
-      {
-        label: "User",
-        data: UserData.map((data) => data.yAxis1),
-        tension: 0.5,
-        borderColor: "#9BDD7C",
-        pointBackgroundColor: "#9BDD7C",
+        data: [90, 80, 70, 60, 50],
+        backgroundColor: "#F0C3F1",
+        barThickness: 30,
       },
     ],
   };
 
   const options = {
     scales: {
-      y: {
-        beginAtZero: true,
-        max: 500,
+      x: {
         ticks: {
-          stepSize: 100,
+          color: "white",
         },
       },
-      x: {
-        grid: {
-          display: false,
-        },
+      y: {
+        display: false,
       },
     },
     plugins: {
       legend: {
-        display: true,
-        position: "top",
-        align: "end",
-        labels: {
-          usePointStyle: true,
-          padding: 20,
-        },
+        display: false,
       },
     },
     elements: {
-      point: {
-        radius: 0,
+      bar: {
+        borderRadius: 2,
       },
     },
   };
 
   return (
     <div style={{ width: "600px", height: "400px" }}>
-      <Bar data={userData} options={options} />
+      <Bar data={data} options={options} />
     </div>
   );
 };
