@@ -49,6 +49,8 @@ const DashboardForm = (props) => {
       case 10:
         setCustomValue10(value);
         return;
+      default:
+        return;
     }
   };
 
