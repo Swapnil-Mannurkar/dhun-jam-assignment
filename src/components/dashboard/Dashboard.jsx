@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAdminDetailsThunk } from "../../store/fetchAdminDetails";
 
 const Dashboard = () => {
+  const [displayDashboard, setDisplayDashboard] = useState(false);
   const id = useSelector((state) => state.loginSlice.data.id);
   const { name, location, amount, charge_customers } = useSelector(
     (state) => state.fetchAdminDetails.data
@@ -12,19 +13,27 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
   const fetchData = async () => {
-    dispatch(fetchAdminDetailsThunk(4));
+    dispatch(fetchAdminDetailsThunk(id));
   };
 
   useEffect(() => {
     fetchData();
+    setTimeout(() => {
+      setDisplayDashboard(true);
+    }, 1000);
   }, [id]);
 
   return (
     <div className={styles.dashboard}>
-      <h1>
-        {name}, {location} on Dhun Jam
-      </h1>
-      <DashboardForm chargeCustomers={charge_customers} amount={amount} />
+      {!displayDashboard && <h1>Loading...</h1>}
+      {displayDashboard && (
+        <>
+          <h1>
+            {name}, {location} on Dhun Jam
+          </h1>
+          <DashboardForm chargeCustomers={charge_customers} amount={amount} />
+        </>
+      )}
     </div>
   );
 };

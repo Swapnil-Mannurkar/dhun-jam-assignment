@@ -17,25 +17,25 @@ const DashboardForm = (props) => {
 
   useEffect(() => {
     setChargeForSong(props.chargeCustomers);
-  });
+  }, [props.chargeCustomers]);
 
   const onSaveHandler = (e) => {
     e.preventDefault();
-    if (chargeForSong) {
-      if (selectedPrice === null) {
-        setSaveBtnClicked(false);
-        alert("Select or enter a custom price");
-        return;
-      }
-    }
+    // if (chargeForSong) {
+    //   if (selectedPrice === null) {
+    //     setSaveBtnClicked(false);
+    //     alert("Select or enter a custom price");
+    //     return;
+    //   }
+    // }
     setSaveBtnClicked(true);
   };
 
-  useEffect(() => {
-    if (chargeForSong === false) {
-      setSelectedPrice(null);
-    }
-  });
+  // useEffect(() => {
+  //   if (chargeForSong === false) {
+  //     setSelectedPrice(null);
+  //   }
+  // });
 
   const saveButtonStyles = {
     border: saveBtnClicked ? "1px solid #f0c3f1" : " ",
@@ -60,7 +60,7 @@ const DashboardForm = (props) => {
         <div className={styles.inputOptions}>
           <input
             type="text"
-            value={props.amount.category_6}
+            value={props.amount["category_6"]}
             className={styles.textInputField}
             disabled={chargeForSong ? false : true}
             style={{
