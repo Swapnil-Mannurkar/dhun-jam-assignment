@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import styles from "./DashboardForm.module.css";
 import BarChart from "./BarChart";
 import PriceButton from "./PriceButton";
+import { useDispatch } from "react-redux";
+import { updateAdminPriceThunk } from "../../store/updateAdminPrice";
 
 const DashboardForm = (props) => {
+  const dispatch = useDispatch();
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [chargeForSong, setChargeForSong] = useState(null);
   const [enableSaveBtn, setEnableSaveBtn] = useState(false);
@@ -20,6 +23,7 @@ const DashboardForm = (props) => {
 
   const onSaveHandler = (e) => {
     e.preventDefault();
+    dispatch(updateAdminPriceThunk(customvalue));
     setSaveBtnClicked(true);
   };
 

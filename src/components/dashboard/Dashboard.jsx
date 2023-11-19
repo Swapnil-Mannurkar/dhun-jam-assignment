@@ -21,7 +21,7 @@ const Dashboard = () => {
     setTimeout(() => {
       setDisplayDashboard(true);
     }, 1000);
-  }, [id]);
+  }, [id, amount]);
 
   return (
     <div className={styles.dashboard}>
