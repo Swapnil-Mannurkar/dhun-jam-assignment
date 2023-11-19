@@ -3,13 +3,18 @@ import { Bar } from "react-chartjs-2";
 // eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
 
-const BarChart = () => {
+const BarChart = (props) => {
   const data = {
     labels: ["Custom", "Category1", "Category2", "Category3", "Category4"],
     datasets: [
       {
         data: [90, 80, 70, 60, 50],
-        backgroundColor: "#F0C3F1",
+        backgroundColor:
+          props.songRequest === null
+            ? "#F0C3F1"
+            : props.songRequest
+            ? "#F0C3F1"
+            : "#C2C2C2",
         barThickness: 30,
       },
     ],

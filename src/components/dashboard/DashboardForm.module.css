@@ -43,3 +43,17 @@
   font-weight: 600;
 }
 
+.dashboardSaveButton {
+  width: 600px;
+  color: white;
+  font-size: 16px;
+  border-radius: 12px;
+  padding: 10px;
+  border: 1px solid transparent;
+  font-weight: 600;
+}
+
+.dashboardSaveButton:hover {
+  cursor: pointer;
+  border: 1px solid #f0c3f1;
+}

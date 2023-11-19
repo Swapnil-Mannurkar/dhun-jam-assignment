@@ -1,11 +1,30 @@
 import React, { useState } from "react";
 import styles from "./DashboardForm.module.css";
+import BarChart from "./BarChart";
+import PriceButton from "./PriceButton";
 
 const DashboardForm = () => {
   const [selectedButton, setSelectedButton] = useState(null);
+  const [songRequest, setSongRequest] = useState(null);
+  const [saveBtnClicked, setSaveBtnClicked] = useState(false);
 
   const handleButtonClick = (buttonId) => {
     setSelectedButton(buttonId);
+  };
+
+  const onSaveHandler = (e) => {
+    e.preventDefault();
+    setSaveBtnClicked(true);
+  };
+
+  const songRequestHandler = (value) => {
+    setSongRequest(value);
+  };
+
+  const saveButtonStyles = {
+    border: saveBtnClicked ? "1px solid #f0c3f1" : " ",
+    backgroundColor:
+      songRequest === null ? "#6741d9" : songRequest ? "#6741d9" : "#C2C2C2",
   };
 
   return (
@@ -13,9 +32,21 @@ const DashboardForm = () => {
       <div className={styles.inputField}>
         <p>Do you want to charge your customers for requesting songs?</p>
         <div className={styles.inputOptions}>
-          <input type="radio" name="charge" />
+          <input
+            type="radio"
+            name="charge"
+            onClick={() => {
+              songRequestHandler(true);
+            }}
+          />
           <label>Yes</label>
-          <input type="radio" name="charge" />
+          <input
+            type="radio"
+            name="charge"
+            onClick={() => {
+              songRequestHandler(false);
+            }}
+          />
           <label>No</label>
         </div>
       </div>
@@ -32,60 +63,40 @@ const DashboardForm = () => {
       <div className={styles.inputField}>
         <p>Regular song request amounts, from high to low-</p>
         <div className={styles.inputOptions}>
-          <button
-            className={styles.inputButton}
-            onClick={(e) => {
-              e.preventDefault();
-              handleButtonClick(1);
-            }}
-            style={{
-              backgroundColor: selectedButton === 1 ? "#F0C3F1" : "#0C0C0C",
-              color: selectedButton === 1 ? "black" : "white",
-            }}
-          >
-            199
-          </button>
-          <button
-            className={styles.inputButton}
-            onClick={(e) => {
-              e.preventDefault();
-              handleButtonClick(2);
-            }}
-            style={{
-              backgroundColor: selectedButton === 2 ? "#F0C3F1" : "#0C0C0C",
-              color: selectedButton === 2 ? "black" : "white",
-            }}
-          >
-            149
-          </button>
-          <button
-            className={styles.inputButton}
-            onClick={(e) => {
-              e.preventDefault();
-              handleButtonClick(3);
-            }}
-            style={{
-              backgroundColor: selectedButton === 3 ? "#F0C3F1" : "#0C0C0C",
-              color: selectedButton === 3 ? "black" : "white",
-            }}
-          >
-            99
-          </button>
-          <button
-            className={styles.inputButton}
-            onClick={(e) => {
-              e.preventDefault();
-              handleButtonClick(4);
-            }}
-            style={{
-              backgroundColor: selectedButton === 4 ? "#F0C3F1" : "#0C0C0C",
-              color: selectedButton === 4 ? "black" : "white",
-            }}
-          >
-            49
-          </button>
+          <PriceButton
+            price="199"
+            id="1"
+            selectedButton={selectedButton}
+            handleButtonClick={handleButtonClick}
+          />
+          <PriceButton
+            price="149"
+            id="2"
+            selectedButton={selectedButton}
+            handleButtonClick={handleButtonClick}
+          />
+          <PriceButton
+            price="99"
+            id="3"
+            selectedButton={selectedButton}
+            handleButtonClick={handleButtonClick}
+          />
+          <PriceButton
+            price="49"
+            id="4"
+            selectedButton={selectedButton}
+            handleButtonClick={handleButtonClick}
+          />
         </div>
       </div>
+      <BarChart songRequest={songRequest} />
+      <button
+        className={styles.dashboardSaveButton}
+        onClick={onSaveHandler}
+        style={saveButtonStyles}
+      >
+        Save
+      </button>
     </form>
   );
 };
