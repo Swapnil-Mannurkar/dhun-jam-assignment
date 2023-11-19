@@ -7,12 +7,12 @@ const initalData = {
 
 export const updateAdminPriceThunk = createAsyncThunk(
   "updateAdminPriceThunk",
-  async (value) => {
-    fetch("https://stg.dhunjam.in/account/admin/4", {
+  async ({ customvalue, id }) => {
+    fetch(`https://stg.dhunjam.in/account/admin/${id}`, {
       method: "PUT",
       body: JSON.stringify({
         amount: {
-          category_6: value,
+          category_6: customvalue,
         },
       }),
     });
