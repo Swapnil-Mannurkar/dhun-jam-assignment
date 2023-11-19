@@ -27,6 +27,10 @@
   font-size: 16px;
 }
 
+.inputOptions input:disabled:hover {
+  cursor: not-allowed;
+}
+
 .textInputField,
 .inputButton {
   width: 100%;

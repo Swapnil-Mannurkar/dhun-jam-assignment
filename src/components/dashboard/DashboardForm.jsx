@@ -74,6 +74,14 @@ const DashboardForm = () => {
             placeholder="444"
             className={styles.textInputField}
             disabled={chargeForSong ? false : true}
+            style={{
+              borderColor:
+                chargeForSong === null
+                  ? "#C2C2C2"
+                  : chargeForSong === false
+                  ? "#C2C2C2"
+                  : "#fff",
+            }}
           />
         </div>
       </div>
