@@ -20,13 +20,6 @@ const DashboardForm = (props) => {
 
   const onSaveHandler = (e) => {
     e.preventDefault();
-    // if (chargeForSong) {
-    //   if (selectedPrice === null) {
-    //     setSaveBtnClicked(false);
-    //     alert("Select or enter a custom price");
-    //     return;
-    //   }
-    // }
     setSaveBtnClicked(true);
   };
 
