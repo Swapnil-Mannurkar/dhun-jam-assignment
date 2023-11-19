@@ -53,6 +53,10 @@
   font-weight: 600;
 }
 
+.dashboardSaveButton:disabled:hover {
+  cursor: not-allowed;
+}
+
 .dashboardSaveButton:hover {
   cursor: pointer;
   border: 1px solid #f0c3f1;

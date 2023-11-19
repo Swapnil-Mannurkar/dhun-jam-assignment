@@ -9,12 +9,7 @@ const BarChart = (props) => {
     datasets: [
       {
         data: [90, 80, 70, 60, 50],
-        backgroundColor:
-          props.songRequest === null
-            ? "#F0C3F1"
-            : props.songRequest
-            ? "#F0C3F1"
-            : "#C2C2C2",
+        backgroundColor: props.chargeForSong ? "#F0C3F1" : "#C2C2C2",
         barThickness: 30,
       },
     ],

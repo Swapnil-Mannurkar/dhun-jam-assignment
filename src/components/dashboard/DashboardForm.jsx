@@ -1,30 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./DashboardForm.module.css";
 import BarChart from "./BarChart";
 import PriceButton from "./PriceButton";
 
 const DashboardForm = () => {
-  const [selectedButton, setSelectedButton] = useState(null);
-  const [songRequest, setSongRequest] = useState(null);
+  const [selectedPrice, setSelectedPrice] = useState(null);
+  const [chargeForSong, setChargeForSong] = useState(null);
   const [saveBtnClicked, setSaveBtnClicked] = useState(false);
 
-  const handleButtonClick = (buttonId) => {
-    setSelectedButton(buttonId);
+  const handleButtonClick = (price) => {
+    setSelectedPrice(price);
+    if (selectedPrice === price) {
+      setSelectedPrice(null);
+    }
+  };
+
+  const chargeForSongHandler = (value) => {
+    setChargeForSong(value);
   };
 
   const onSaveHandler = (e) => {
     e.preventDefault();
+    if (chargeForSong) {
+      if (selectedPrice === null) {
+        alert("Select or enter a custom price");
+        return;
+      }
+    }
     setSaveBtnClicked(true);
   };
 
-  const songRequestHandler = (value) => {
-    setSongRequest(value);
-  };
+  useEffect(() => {
+    if (chargeForSong === false) {
+      setSelectedPrice(null);
+    }
+  });
 
   const saveButtonStyles = {
     border: saveBtnClicked ? "1px solid #f0c3f1" : " ",
-    backgroundColor:
-      songRequest === null ? "#6741d9" : songRequest ? "#6741d9" : "#C2C2C2",
+    backgroundColor: chargeForSong ? "#6741d9" : "#C2C2C2",
   };
 
   return (
@@ -36,7 +50,7 @@ const DashboardForm = () => {
             type="radio"
             name="charge"
             onClick={() => {
-              songRequestHandler(true);
+              chargeForSongHandler(true);
             }}
           />
           <label>Yes</label>
@@ -44,56 +58,62 @@ const DashboardForm = () => {
             type="radio"
             name="charge"
             onClick={() => {
-              songRequestHandler(false);
+              chargeForSongHandler(false);
             }}
           />
           <label>No</label>
         </div>
       </div>
       <div className={styles.inputField}>
-        <p>Custom song request amount-</p>
+        <p style={{ color: chargeForSong ? "white" : "#C2C2C2" }}>
+          Custom song request amount-
+        </p>
         <div className={styles.inputOptions}>
           <input
             type="text"
             placeholder="444"
             className={styles.textInputField}
+            disabled={chargeForSong ? false : true}
           />
         </div>
       </div>
       <div className={styles.inputField}>
-        <p>Regular song request amounts, from high to low-</p>
+        <p style={{ color: chargeForSong ? "white" : "#C2C2C2" }}>
+          Regular song request amounts, from high to low-
+        </p>
         <div className={styles.inputOptions}>
           <PriceButton
             price="199"
-            id="1"
-            selectedButton={selectedButton}
+            selectedPrice={selectedPrice}
             handleButtonClick={handleButtonClick}
+            chargeForSong={chargeForSong}
           />
           <PriceButton
             price="149"
-            id="2"
-            selectedButton={selectedButton}
+            selectedPrice={selectedPrice}
             handleButtonClick={handleButtonClick}
+            chargeForSong={chargeForSong}
           />
           <PriceButton
             price="99"
-            id="3"
-            selectedButton={selectedButton}
+            selectedPrice={selectedPrice}
             handleButtonClick={handleButtonClick}
+            chargeForSong={chargeForSong}
           />
           <PriceButton
             price="49"
-            id="4"
-            selectedButton={selectedButton}
+            selectedPrice={selectedPrice}
             handleButtonClick={handleButtonClick}
+            chargeForSong={chargeForSong}
           />
         </div>
       </div>
-      <BarChart songRequest={songRequest} />
+      <BarChart chargeForSong={chargeForSong} />
       <button
         className={styles.dashboardSaveButton}
         onClick={onSaveHandler}
         style={saveButtonStyles}
+        disabled={chargeForSong ? false : true}
       >
         Save
       </button>
