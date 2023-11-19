@@ -6,7 +6,10 @@ import PriceButton from "./PriceButton";
 const DashboardForm = (props) => {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [chargeForSong, setChargeForSong] = useState(null);
+  const [enableSaveBtn, setEnableSaveBtn] = useState(false);
   const [saveBtnClicked, setSaveBtnClicked] = useState(false);
+  const [customvalue, setCustomValue] = useState(props.amount.category_6);
+  let { category_7, category_8, category_9, category_10 } = props.amount;
 
   const handleButtonClick = (price) => {
     setSelectedPrice(price);
@@ -14,10 +17,6 @@ const DashboardForm = (props) => {
       setSelectedPrice(null);
     }
   };
-
-  useEffect(() => {
-    setChargeForSong(props.chargeCustomers);
-  }, [props.chargeCustomers]);
 
   const onSaveHandler = (e) => {
     e.preventDefault();
@@ -31,15 +30,34 @@ const DashboardForm = (props) => {
     setSaveBtnClicked(true);
   };
 
-  // useEffect(() => {
-  //   if (chargeForSong === false) {
-  //     setSelectedPrice(null);
-  //   }
-  // });
+  const customValueInputHandler = (e) => {
+    setCustomValue(Number(e.target.value));
+  };
+
+  console.log(customvalue);
+
+  useEffect(() => {
+    setChargeForSong(props.chargeCustomers);
+    setSaveBtnClicked(false);
+  }, [props.chargeCustomers]);
+
+  useEffect(() => {
+    if (
+      customvalue > 99 &&
+      category_7 > 79 &&
+      category_8 > 59 &&
+      category_9 > 39 &&
+      category_10 > 19
+    ) {
+      setEnableSaveBtn(true);
+    } else {
+      setEnableSaveBtn(false);
+    }
+  }, [customvalue, category_7, category_8, category_9, category_10]);
 
   const saveButtonStyles = {
     border: saveBtnClicked ? "1px solid #f0c3f1" : " ",
-    backgroundColor: chargeForSong ? "#6741d9" : "#C2C2C2",
+    backgroundColor: enableSaveBtn && chargeForSong ? "#6741d9" : "#C2C2C2",
   };
 
   return (
@@ -59,13 +77,14 @@ const DashboardForm = (props) => {
         </p>
         <div className={styles.inputOptions}>
           <input
-            type="text"
-            value={props.amount["category_6"]}
+            type="number"
+            placeholder={customvalue}
             className={styles.textInputField}
             disabled={chargeForSong ? false : true}
             style={{
               borderColor: chargeForSong ? "#FFFFFF" : "#C2C2C2",
             }}
+            onChange={customValueInputHandler}
           />
         </div>
       </div>
@@ -75,25 +94,25 @@ const DashboardForm = (props) => {
         </p>
         <div className={styles.inputOptions}>
           <PriceButton
-            price={props.amount.category_7}
+            price={category_7}
             selectedPrice={selectedPrice}
             handleButtonClick={handleButtonClick}
             chargeForSong={chargeForSong}
           />
           <PriceButton
-            price={props.amount.category_8}
+            price={category_8}
             selectedPrice={selectedPrice}
             handleButtonClick={handleButtonClick}
             chargeForSong={chargeForSong}
           />
           <PriceButton
-            price={props.amount.category_9}
+            price={category_9}
             selectedPrice={selectedPrice}
             handleButtonClick={handleButtonClick}
             chargeForSong={chargeForSong}
           />
           <PriceButton
-            price={props.amount.category_10}
+            price={category_10}
             selectedPrice={selectedPrice}
             handleButtonClick={handleButtonClick}
             chargeForSong={chargeForSong}
@@ -105,7 +124,7 @@ const DashboardForm = (props) => {
         className={styles.dashboardSaveButton}
         onClick={onSaveHandler}
         style={saveButtonStyles}
-        disabled={chargeForSong ? false : true}
+        disabled={enableSaveBtn && chargeForSong ? false : true}
       >
         Save
       </button>
