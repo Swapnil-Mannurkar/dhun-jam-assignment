@@ -65,3 +65,13 @@
   border: 2px solid #f0c3f1;
   cursor: pointer;
 }
+
+@media screen and (max-width: 500px) {
+  .loginForm {
+    width: 350px;
+  }
+
+  .inputFields input {
+    width: 350px;
+  }
+}

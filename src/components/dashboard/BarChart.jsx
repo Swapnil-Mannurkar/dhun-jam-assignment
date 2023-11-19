@@ -52,8 +52,17 @@ const BarChart = (props) => {
     },
   };
 
+  const mobileView = window.innerWidth < 700;
+
   return (
-    <div style={{ width: "600px", height: "320px", position: "relative" }}>
+    <div
+      style={{
+        width: mobileView ? "95%" : "600px",
+        height: mobileView ? "200px" : "320px",
+        position: "relative",
+        alignSelf: "center"
+      }}
+    >
       <Bar data={data} options={options} />
       <p
         style={{

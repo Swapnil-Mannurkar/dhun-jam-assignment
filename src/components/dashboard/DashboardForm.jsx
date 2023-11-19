@@ -11,17 +11,45 @@ const DashboardForm = (props) => {
   const [chargeForSong, setChargeForSong] = useState(null);
   const [enableSaveBtn, setEnableSaveBtn] = useState(false);
   const [saveBtnClicked, setSaveBtnClicked] = useState(false);
-  const [customvalue, setCustomValue] = useState(props.amount.category_6);
-  let { category_7, category_8, category_9, category_10 } = props.amount;
+  const [CustomValue6, setCustomValue6] = useState(props.amount.category_6);
+  const [CustomValue7, setCustomValue7] = useState(props.amount.category_7);
+  const [CustomValue8, setCustomValue8] = useState(props.amount.category_8);
+  const [CustomValue9, setCustomValue9] = useState(props.amount.category_9);
+  const [CustomValue10, setCustomValue10] = useState(props.amount.category_10);
 
   const onSaveHandler = (e) => {
     e.preventDefault();
-    dispatch(updateAdminPriceThunk({ customvalue, id }));
+    dispatch(
+      updateAdminPriceThunk({
+        CustomValue6,
+        CustomValue7,
+        CustomValue8,
+        CustomValue9,
+        CustomValue10,
+        id,
+      })
+    );
     setSaveBtnClicked(true);
   };
 
-  const customValueInputHandler = (e) => {
-    setCustomValue(Number(e.target.value));
+  const customValueInputHandler = (value, id) => {
+    switch (id) {
+      case 6:
+        setCustomValue6(value);
+        return;
+      case 7:
+        setCustomValue7(value);
+        return;
+      case 8:
+        setCustomValue8(value);
+        return;
+      case 9:
+        setCustomValue9(value);
+        return;
+      case 10:
+        setCustomValue10(value);
+        return;
+    }
   };
 
   useEffect(() => {
@@ -31,17 +59,17 @@ const DashboardForm = (props) => {
 
   useEffect(() => {
     if (
-      customvalue > 99 &&
-      category_7 > 79 &&
-      category_8 > 59 &&
-      category_9 > 39 &&
-      category_10 > 19
+      CustomValue6 >= 99 &&
+      CustomValue7 >= 79 &&
+      CustomValue8 >= 59 &&
+      CustomValue9 >= 39 &&
+      CustomValue10 >= 19
     ) {
       setEnableSaveBtn(true);
     } else {
       setEnableSaveBtn(false);
     }
-  }, [customvalue, category_7, category_8, category_9, category_10]);
+  }, [CustomValue6, CustomValue7, CustomValue8, CustomValue9, CustomValue10]);
 
   const saveButtonStyles = {
     border: saveBtnClicked ? "1px solid #f0c3f1" : " ",
@@ -64,15 +92,11 @@ const DashboardForm = (props) => {
           Custom song request amount-
         </p>
         <div className={styles.inputOptions}>
-          <input
-            type="number"
-            placeholder={customvalue}
-            className={styles.textInputField}
-            disabled={chargeForSong ? false : true}
-            style={{
-              borderColor: chargeForSong ? "#FFFFFF" : "#C2C2C2",
-            }}
-            onChange={customValueInputHandler}
+          <PriceButton
+            price={CustomValue6}
+            chargeForSong={chargeForSong}
+            id={6}
+            customValueInputHandler={customValueInputHandler}
           />
         </div>
       </div>
@@ -81,10 +105,30 @@ const DashboardForm = (props) => {
           Regular song request amounts, from high to low-
         </p>
         <div className={styles.inputOptions}>
-          <PriceButton price={category_7} chargeForSong={chargeForSong} />
-          <PriceButton price={category_8} chargeForSong={chargeForSong} />
-          <PriceButton price={category_9} chargeForSong={chargeForSong} />
-          <PriceButton price={category_10} chargeForSong={chargeForSong} />
+          <PriceButton
+            price={CustomValue7}
+            chargeForSong={chargeForSong}
+            id={7}
+            customValueInputHandler={customValueInputHandler}
+          />
+          <PriceButton
+            price={CustomValue8}
+            chargeForSong={chargeForSong}
+            id={8}
+            customValueInputHandler={customValueInputHandler}
+          />
+          <PriceButton
+            price={CustomValue9}
+            chargeForSong={chargeForSong}
+            id={9}
+            customValueInputHandler={customValueInputHandler}
+          />
+          <PriceButton
+            price={CustomValue10}
+            chargeForSong={chargeForSong}
+            id={10}
+            customValueInputHandler={customValueInputHandler}
+          />
         </div>
       </div>
       {chargeForSong && <BarChart amount={props.amount} />}

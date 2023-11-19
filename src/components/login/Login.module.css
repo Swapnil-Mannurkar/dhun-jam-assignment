@@ -11,6 +11,12 @@
 }
 
 h1 {
-    width: 600px;
-    text-align: center;
+  width: 600px;
+  text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+  h1 {
+    width: 100%;
+  }
 }

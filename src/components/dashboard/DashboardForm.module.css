@@ -65,3 +65,19 @@
   cursor: pointer;
   border: 1px solid #f0c3f1;
 }
+
+@media screen and (max-width: 500px) {
+  .dashboardForm {
+    width: 95%;
+  }
+
+  .inputField {
+    grid-template-columns: 95%;
+    justify-content: center;
+  }
+
+  .dashboardSaveButton {
+    width: 95%;
+    align-self: center;
+  }
+}
