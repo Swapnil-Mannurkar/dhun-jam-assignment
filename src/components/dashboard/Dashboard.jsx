@@ -16,12 +16,15 @@ const Dashboard = () => {
     dispatch(fetchAdminDetailsThunk(id));
   };
 
-  useEffect(() => {
-    fetchData();
-    setTimeout(() => {
-      setDisplayDashboard(true);
-    }, 1000);
-  }, [id, amount]);
+  useEffect(
+    () => {
+      fetchData();
+      setTimeout(() => {
+        setDisplayDashboard(true);
+      }, 1000);
+    }, // eslint-disable-next-line
+    [id, amount]
+  );
 
   return (
     <div className={styles.dashboard}>
