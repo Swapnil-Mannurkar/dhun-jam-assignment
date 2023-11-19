@@ -8,8 +8,14 @@ const BarChart = (props) => {
     labels: ["Custom", "Category1", "Category2", "Category3", "Category4"],
     datasets: [
       {
-        data: [90, 80, 70, 60, 50],
-        backgroundColor: props.chargeForSong ? "#F0C3F1" : "#C2C2C2",
+        data: [
+          props.amount.category_6,
+          props.amount.category_7,
+          props.amount.category_8,
+          props.amount.category_9,
+          props.amount.category_10,
+        ],
+        backgroundColor: "#F0C3F1",
         barThickness: 30,
       },
     ],

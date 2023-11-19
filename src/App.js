@@ -6,8 +6,8 @@ import Dashboard from "./components/dashboard/Dashboard.jsx";
 
 function App() {
   const status = useSelector((state) => state.loginSlice.status);
-  return <Dashboard />;
-  // return <>{status === "Success" ? <Dashboard /> : <Login />}</>;
+  // return <Dashboard />;
+  return <>{status === "Success" ? <Dashboard /> : <Login />}</>;
 }
 
 export default App;

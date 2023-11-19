@@ -3,7 +3,7 @@ import styles from "./DashboardForm.module.css";
 import BarChart from "./BarChart";
 import PriceButton from "./PriceButton";
 
-const DashboardForm = () => {
+const DashboardForm = (props) => {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [chargeForSong, setChargeForSong] = useState(null);
   const [saveBtnClicked, setSaveBtnClicked] = useState(false);
@@ -15,14 +15,15 @@ const DashboardForm = () => {
     }
   };
 
-  const chargeForSongHandler = (value) => {
-    setChargeForSong(value);
-  };
+  useEffect(() => {
+    setChargeForSong(props.chargeCustomers);
+  });
 
   const onSaveHandler = (e) => {
     e.preventDefault();
     if (chargeForSong) {
       if (selectedPrice === null) {
+        setSaveBtnClicked(false);
         alert("Select or enter a custom price");
         return;
       }
@@ -46,21 +47,9 @@ const DashboardForm = () => {
       <div className={styles.inputField}>
         <p>Do you want to charge your customers for requesting songs?</p>
         <div className={styles.inputOptions}>
-          <input
-            type="radio"
-            name="charge"
-            onClick={() => {
-              chargeForSongHandler(true);
-            }}
-          />
+          <input type="radio" name="charge" checked={chargeForSong === true} />
           <label>Yes</label>
-          <input
-            type="radio"
-            name="charge"
-            onClick={() => {
-              chargeForSongHandler(false);
-            }}
-          />
+          <input type="radio" name="charge" checked={chargeForSong === false} />
           <label>No</label>
         </div>
       </div>
@@ -71,16 +60,11 @@ const DashboardForm = () => {
         <div className={styles.inputOptions}>
           <input
             type="text"
-            placeholder="444"
+            value={props.amount.category_6}
             className={styles.textInputField}
             disabled={chargeForSong ? false : true}
             style={{
-              borderColor:
-                chargeForSong === null
-                  ? "#C2C2C2"
-                  : chargeForSong === false
-                  ? "#C2C2C2"
-                  : "#fff",
+              borderColor: chargeForSong ? "#FFFFFF" : "#C2C2C2",
             }}
           />
         </div>
@@ -91,32 +75,32 @@ const DashboardForm = () => {
         </p>
         <div className={styles.inputOptions}>
           <PriceButton
-            price="199"
+            price={props.amount.category_7}
             selectedPrice={selectedPrice}
             handleButtonClick={handleButtonClick}
             chargeForSong={chargeForSong}
           />
           <PriceButton
-            price="149"
+            price={props.amount.category_8}
             selectedPrice={selectedPrice}
             handleButtonClick={handleButtonClick}
             chargeForSong={chargeForSong}
           />
           <PriceButton
-            price="99"
+            price={props.amount.category_9}
             selectedPrice={selectedPrice}
             handleButtonClick={handleButtonClick}
             chargeForSong={chargeForSong}
           />
           <PriceButton
-            price="49"
+            price={props.amount.category_10}
             selectedPrice={selectedPrice}
             handleButtonClick={handleButtonClick}
             chargeForSong={chargeForSong}
           />
         </div>
       </div>
-      <BarChart chargeForSong={chargeForSong} />
+      {chargeForSong && <BarChart amount={props.amount} />}
       <button
         className={styles.dashboardSaveButton}
         onClick={onSaveHandler}
