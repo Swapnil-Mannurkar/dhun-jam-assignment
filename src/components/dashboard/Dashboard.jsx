@@ -13,7 +13,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
   const fetchData = async () => {
-    dispatch(fetchAdminDetailsThunk(4));
+    dispatch(fetchAdminDetailsThunk(id));
   };
 
   useEffect(() => {

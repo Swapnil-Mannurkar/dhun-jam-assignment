@@ -27,8 +27,6 @@ const DashboardForm = (props) => {
     setCustomValue(Number(e.target.value));
   };
 
-  console.log(customvalue);
-
   useEffect(() => {
     setChargeForSong(props.chargeCustomers);
     setSaveBtnClicked(false);
