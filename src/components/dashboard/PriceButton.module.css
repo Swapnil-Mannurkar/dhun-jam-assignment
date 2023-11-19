@@ -7,12 +7,3 @@
   padding: 8px;
   text-align: center;
 }
-
-.inputButton {
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.inputButton:disabled:hover {
-  cursor: not-allowed;
-}

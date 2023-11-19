@@ -7,19 +7,11 @@ import { updateAdminPriceThunk } from "../../store/updateAdminPrice";
 
 const DashboardForm = (props) => {
   const dispatch = useDispatch();
-  const [selectedPrice, setSelectedPrice] = useState(null);
   const [chargeForSong, setChargeForSong] = useState(null);
   const [enableSaveBtn, setEnableSaveBtn] = useState(false);
   const [saveBtnClicked, setSaveBtnClicked] = useState(false);
   const [customvalue, setCustomValue] = useState(props.amount.category_6);
   let { category_7, category_8, category_9, category_10 } = props.amount;
-
-  const handleButtonClick = (price) => {
-    setSelectedPrice(price);
-    if (selectedPrice === price) {
-      setSelectedPrice(null);
-    }
-  };
 
   const onSaveHandler = (e) => {
     e.preventDefault();
@@ -88,30 +80,10 @@ const DashboardForm = (props) => {
           Regular song request amounts, from high to low-
         </p>
         <div className={styles.inputOptions}>
-          <PriceButton
-            price={category_7}
-            selectedPrice={selectedPrice}
-            handleButtonClick={handleButtonClick}
-            chargeForSong={chargeForSong}
-          />
-          <PriceButton
-            price={category_8}
-            selectedPrice={selectedPrice}
-            handleButtonClick={handleButtonClick}
-            chargeForSong={chargeForSong}
-          />
-          <PriceButton
-            price={category_9}
-            selectedPrice={selectedPrice}
-            handleButtonClick={handleButtonClick}
-            chargeForSong={chargeForSong}
-          />
-          <PriceButton
-            price={category_10}
-            selectedPrice={selectedPrice}
-            handleButtonClick={handleButtonClick}
-            chargeForSong={chargeForSong}
-          />
+          <PriceButton price={category_7} chargeForSong={chargeForSong} />
+          <PriceButton price={category_8} chargeForSong={chargeForSong} />
+          <PriceButton price={category_9} chargeForSong={chargeForSong} />
+          <PriceButton price={category_10} chargeForSong={chargeForSong} />
         </div>
       </div>
       {chargeForSong && <BarChart amount={props.amount} />}
